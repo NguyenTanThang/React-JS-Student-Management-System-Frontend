@@ -1,6 +1,18 @@
 # BackEnd GitHub
 ## https://github.com/NguyenTanThang/Node-JS-Student-Management-System-Backend
 
+# Student Demo Account
+## Email: student@student.com
+## Password: 123456
+
+# Teacher Demo Account
+## Email: teacher@teacher.com
+## Password: 123456
+
+# Admin Demo Account
+## Email: admin@admin.com
+## Password: admin
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
