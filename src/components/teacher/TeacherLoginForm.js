@@ -34,7 +34,7 @@ class TeacherLoginForm extends Component {
         setTimeout(() => {
             if (localStorage.getItem("token") != undefined){
                 this.props.history.push(`/teachers/details/${localStorage.getItem("user_id")}`)
-                //window.location.reload();
+                window.location.reload();
             }
         }, 1000)
     }
