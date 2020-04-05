@@ -36,7 +36,7 @@ class AdminLoginForm extends Component {
                 this.props.history.push(`/classes`)
                 window.location.reload();
             }
-        }, 500)
+        }, 1000)
     }
 
     render() {

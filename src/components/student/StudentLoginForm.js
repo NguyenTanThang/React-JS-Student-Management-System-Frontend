@@ -36,7 +36,7 @@ class StudentLoginForm extends Component {
                 this.props.history.push(`/students/details/${localStorage.getItem("user_id")}`)
                 window.location.reload();
             }
-        }, 500)
+        }, 1000)
         
     }
 
