@@ -3,11 +3,22 @@ import {connect} from "react-redux";
 import {getAllClasses} from "../../actions/classActions";
 import ClassItem from "./ClassItem";
 import {Link} from "react-router-dom";
+import {userGetter} from "../../utils/userGetter";
 
 class ListOfClasses extends Component {
 
-    componentDidMount(){
+    async componentDidMount(){
+        let user_id = localStorage.getItem("user_id");
+        let user = await userGetter(user_id)
         this.props.getAllClasses();
+
+        if (user.role == "student") {
+            this.props.history.push(`/students/details/${user_id}`);
+        }
+
+        if (user.role == "teacher") {
+            this.props.history.push(`/teachers/details/${user_id}`);
+        }
     }
 
     render() {

@@ -32,11 +32,11 @@ class StudentLoginForm extends Component {
         })
 
         setTimeout(() => {
-            if (localStorage.getItem("token") != undefined){
+            if (localStorage.getItem("user_id")){
                 this.props.history.push(`/students/details/${localStorage.getItem("user_id")}`)
                 window.location.reload();
             }
-        }, 1000)
+        }, 2000)
         
     }
 

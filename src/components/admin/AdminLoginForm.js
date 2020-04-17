@@ -32,11 +32,11 @@ class AdminLoginForm extends Component {
         })
 
         setTimeout(() => {
-            if (localStorage.getItem("token") != undefined){
+            if (localStorage.getItem("token")){
                 this.props.history.push(`/classes`)
                 window.location.reload();
             }
-        }, 1000)
+        }, 2000)
     }
 
     render() {

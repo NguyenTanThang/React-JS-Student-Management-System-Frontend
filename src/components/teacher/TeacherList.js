@@ -28,7 +28,7 @@ class TeacherList extends Component {
 
     render() {
         const teacherList = this.props.teachers.map(teacherItem => {
-            return <TeacherItem teacherItem={teacherItem}/>
+            return <TeacherItem key={teacherItem._id} teacherItem={teacherItem}/>
         })
 
         return (

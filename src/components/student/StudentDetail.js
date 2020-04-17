@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from "axios";
 import {getStudentByIDURL} from "../../config/routes";
 import {userGetter} from "../../utils/userGetter";
+import dateParser from "../../utils/dateParser";
 
 class StudentDetail extends Component {
 
@@ -34,7 +35,7 @@ class StudentDetail extends Component {
                     <div className="col-lg-6 col-md-6 col-sm-12">
                         <ul>
                             <li>
-                                <b>Date of Birth: </b>{dob}
+                                <b>Date of Birth: </b>{dateParser(dob)}
                             </li>
                             <li>
                                 <b>Email: </b>{email}
@@ -54,7 +55,7 @@ class StudentDetail extends Component {
                                 <b>Address: </b>{address}
                             </li>
                             <li>
-                                <b>Enrolled Date: </b>{created_date}
+                                <b>Enrolled Date: </b>{dateParser(created_date)}
                             </li>
                         </ul>
                     </div>

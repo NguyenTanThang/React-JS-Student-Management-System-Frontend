@@ -28,7 +28,7 @@ class StudentList extends Component {
 
     render() {
         const studentList = this.props.students.map(studentItem => {
-            return <StudentItem studentItem={studentItem}/>
+            return <StudentItem key={studentItem._id} studentItem={studentItem}/>
         })
 
         return (

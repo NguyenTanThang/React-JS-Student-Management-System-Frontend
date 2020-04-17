@@ -6,6 +6,7 @@ import MessageAlert from "../partial/MessageAlert";
 import axios from "axios";
 import {getTeacherByIDURL} from "../../config/routes";
 import {userGetter} from "../../utils/userGetter";
+import dateParser from "../../utils/dateParser";
 
 class EditTeacherForm extends Component {
 
@@ -86,7 +87,7 @@ class EditTeacherForm extends Component {
             assigned_classroom: "",
             student_item: {}
         }, () => {
-            //this.props.history.push("/teachers");
+            this.props.history.push("/teachers");
         })
     }
 
@@ -104,6 +105,8 @@ class EditTeacherForm extends Component {
                 {classItem.class_name}
             </option>
         })
+
+        console.log(dateParser(dob));
 
         return (
             <div className="container">
@@ -124,7 +127,7 @@ class EditTeacherForm extends Component {
 
                     <div className="form-group">
                         <label>Date of Birth:</label>
-                        <input required className="form-control" type="date" id="dob" name="dob" onChange={this.onChange}value={dob}/>
+                        <input required className="form-control" type="date" id="dob" name="dob" onChange={this.onChange} value={dateParser(dob)}/>
                     </div>
 
                     <div className="form-group">

@@ -6,6 +6,7 @@ import MessageAlert from "../partial/MessageAlert";
 import axios from "axios";
 import {getStudentByIDURL} from "../../config/routes";
 import {userGetter} from "../../utils/userGetter";
+import dateParser from "../../utils/dateParser";
 
 class EditStudentForm extends Component {
 
@@ -86,7 +87,7 @@ class EditStudentForm extends Component {
             assigned_classroom: "",
             student_item: {}
         }, () => {
-            //this.props.history.push("/students");
+            this.props.history.push("/students");
         })
 
     }
@@ -125,7 +126,7 @@ class EditStudentForm extends Component {
 
                     <div className="form-group">
                         <label>Date of Birth:</label>
-                        <input className="form-control" type="date" id="dob" name="dob" onChange={this.onChange}value={dob} required/>
+                        <input className="form-control" type="date" id="dob" name="dob" onChange={this.onChange}value={dateParser(dob)} required/>
                     </div>
 
                     <div className="form-group">
