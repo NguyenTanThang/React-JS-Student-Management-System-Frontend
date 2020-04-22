@@ -2,6 +2,11 @@ ul,ol {
     list-style: none;
 }
 
+.section-padding{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
 div.container > *{
     margin-bottom: 20px;
     margin-top: 20px;
@@ -56,4 +61,8 @@ div.container > *{
 .detail-container ul li {
     margin-top: 30px;
     margin-bottom: 30px;
+}
+
+.search-container{
+    padding-bottom: 20px;
 }

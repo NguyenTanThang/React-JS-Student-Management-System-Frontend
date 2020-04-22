@@ -4,6 +4,7 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Navbar from "./components/partial/Navbar";
 import Logout from "./components/partial/Logout";
 import Home from "./components/main/Home";
+import ChangePassword from "./components/profile/ChangePassword";
 
 import AddClassForm from "./components/class/AddClassForm";
 import ClassList from "./components/class/ListOfClasses";
@@ -55,6 +56,7 @@ function App() {
           <Route path="/teachers/login" component={TeacherLoginForm}/>
           <Route path="/teachers/details/:teacher_id" component={TeacherDetail}/>
 
+          <Route path="/change-password" component={ChangePassword}/>
           <Route path="/logout" component={Logout}/>
           <Route path="/" exact component={Home}/>
         </Switch>

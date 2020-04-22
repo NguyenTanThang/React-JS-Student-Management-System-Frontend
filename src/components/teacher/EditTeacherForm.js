@@ -6,7 +6,7 @@ import MessageAlert from "../partial/MessageAlert";
 import axios from "axios";
 import {getTeacherByIDURL} from "../../config/routes";
 import {userGetter} from "../../utils/userGetter";
-import dateParser from "../../utils/dateParser";
+import {dateParser} from "../../utils/dateParser";
 
 class EditTeacherForm extends Component {
 
@@ -16,14 +16,19 @@ class EditTeacherForm extends Component {
         dob: "",
         address: "",
         assigned_classroom: "",
-        teacher_item: {}
+        teacher_item: {},
+        user: {}
     }
 
     async componentDidMount() {
         let user_id = localStorage.getItem("user_id");
         let user = await userGetter(user_id)
 
-        if (user == null || user.role != "admin"){
+        this.setState({
+            user
+        })
+
+        if (user == null){
             this.props.history.push("/");
         }
 
@@ -31,9 +36,11 @@ class EditTeacherForm extends Component {
             this.props.history.push(`/students/details/${user_id}`);
         }
 
+        /*
         if (user.role == "teacher") {
             this.props.history.push(`/teachers/details/${user_id}`);
         }
+        */
             
         this.props.getAllClasses()
 
@@ -93,7 +100,7 @@ class EditTeacherForm extends Component {
 
     render() {
 
-        const {class_name, name, dob, phone_number, address} = this.state;
+        const {class_name, name, dob, phone_number, address, user} = this.state;
 
         const classItems = this.props.classes.map((classItem, index) => {
             if (classItem.class_name === class_name){
@@ -105,6 +112,15 @@ class EditTeacherForm extends Component {
                 {classItem.class_name}
             </option>
         })
+
+        const assignedClassroomInput = user.role === "admin" ? (
+            <div className="form-group">
+                <label>Assigned Classroom:</label>
+                <select required className="custom-select" id="assigned_classroom" onChange={this.onChange}>
+                    {classItems}
+                </select>
+            </div>
+        ) : ("");
 
         console.log(dateParser(dob));
 
@@ -132,15 +148,10 @@ class EditTeacherForm extends Component {
 
                     <div className="form-group">
                         <label>Address:</label>
-                        <textarea className="form-control" placeholder="Address" id="address" name="address" value={address} onChange={this.onChange}></textarea>
+                        <textarea className="form-control" placeholder="Address" id="address" name="address" value={address} onChange={this.onChange} required></textarea>
                     </div>
 
-                    <div className="form-group">
-                        <label>Assigned Classroom:</label>
-                        <select required className="custom-select" id="assigned_classroom" onChange={this.onChange}>
-                            {classItems}
-                        </select>
-                    </div>
+                    {assignedClassroomInput}
 
                     <div className="form-group">
                         <button type="submit" className="btn btn-primary btn-block">Update Teacher</button>

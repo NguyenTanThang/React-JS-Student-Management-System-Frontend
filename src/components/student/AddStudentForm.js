@@ -140,8 +140,8 @@ class AddStudentForm extends Component {
 
                     <div className="form-group">
                         <label>Assigned Classroom:</label>
-                        <select required id="assigned_classroom" className="custom-select" onChange={this.onChange}>
-                            <option key="0" value="none" defaultValue selected disabled>
+                        <select required id="assigned_classroom" defaultValue={""} className="custom-select" onChange={this.onChange}>
+                            <option key="0" value={""} disabled>
                                 None
                             </option>
                             {classItems}

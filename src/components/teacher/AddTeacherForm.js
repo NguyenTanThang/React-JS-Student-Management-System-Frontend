@@ -79,6 +79,16 @@ class AddTeacherForm extends Component {
 
     render() {
 
+        const {
+            name,
+            phone_number,
+            dob,
+            address,
+            email,
+            password,
+            assigned_classroom
+        } = this.state;
+
         const classItems = this.props.classes.map((classItem, index) => {
             /*
             if (index === 0){
@@ -101,38 +111,38 @@ class AddTeacherForm extends Component {
 
                     <div className="form-group">
                         <label>Name:</label>
-                        <input className="form-control" placeholder="Name" type="text" id="name" name="name" onChange={this.onChange} required/>
+                        <input className="form-control" placeholder="Name" type="text" id="name" name="name" onChange={this.onChange} required value={name}/>
                     </div>
 
                     <div className="form-group">
                         <label>Phone Number:</label>
-                        <input className="form-control" placeholder="Phone Number" type="text" id="phone_number" name="phone_number" onChange={this.onChange} required/>
+                        <input className="form-control" placeholder="Phone Number" type="text" id="phone_number" name="phone_number" onChange={this.onChange} required value={phone_number}/>
                     </div>
 
                     <div className="form-group">
                         <label>Date of Birth:</label>
-                        <input className="form-control" type="date" id="dob" name="dob" onChange={this.onChange}required/>
+                        <input className="form-control" type="date" id="dob" name="dob" onChange={this.onChange}required value={dob}/>
                     </div>
 
                     <div className="form-group">
                         <label>Email:</label>
-                        <input className="form-control" placeholder="Email" type="email" id="email" name="email" onChange={this.onChange} required/>
+                        <input className="form-control" placeholder="Email" type="email" id="email" name="email" onChange={this.onChange} required value={email}/>
                     </div>
 
                     <div className="form-group">
                         <label>Password:</label>
-                        <input className="form-control" placeholder="Password" type="password" id="password" name="password" onChange={this.onChange} required/>
+                        <input className="form-control" placeholder="Password" type="password" id="password" name="password" onChange={this.onChange} required value={password}/>
                     </div>
 
                     <div className="form-group">
                         <label>Address:</label>
-                        <textarea className="form-control" placeholder="Address" id="address" name="address" onChange={this.onChange}></textarea>
+                        <textarea className="form-control" placeholder="Address" id="address" name="address" value={address} onChange={this.onChange}></textarea>
                     </div>
 
                     <div className="form-group">
                         <label>Assigned Classroom:</label>
-                        <select required id="assigned_classroom" className="custom-select" onChange={this.onChange}>
-                            <option key="0" value="none" defaultValue selected disabled>
+                        <select required id="assigned_classroom" className="custom-select" defaultValue={""} onChange={this.onChange}>
+                            <option key="0" value={""} disabled>
                                 None
                             </option>
                             {classItems}

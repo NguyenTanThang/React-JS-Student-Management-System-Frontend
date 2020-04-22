@@ -6,7 +6,8 @@ import {
     GET_TEACHERS_BY_NAME,
     GET_TEACHER_BY_ID,
     SET_MESSAGE,
-    USER_LOGIN
+    USER_LOGIN,
+    TEACHER_CHANGE_PASSWORD
 } from "./types";
 import axios from "axios";
 import {
@@ -16,7 +17,8 @@ import {
     getEditTeacherURL,
     getTeacherByIDURL,
     getTeachersByNameURL,
-    teacherLoginURL
+    teacherLoginURL,
+    getTeacherChangePasswordURL
 } from "../config/routes";
 
 export const getAllTeachers = () => {
@@ -146,6 +148,7 @@ export const addTeacher = (newTeacher) => {
     return async (dispatch) => {
         try {
             const res = await axios.post(addTeacherURL, newTeacher)
+            
             const {
                 data,
                 success,
@@ -321,6 +324,53 @@ export const teacherLogin = (teacherAccount) => {
                     user_id,
                     token,
                     date: Date.now()
+                }
+            })
+        } catch (error) {
+            return dispatch({
+                type: SET_MESSAGE,
+                payload: {
+                    message: error.response.data.message,
+                    msg_type: "danger"
+                }
+            })
+        }
+    }
+}
+
+export const teacherChangePassword = (updatedTeacherID, oldPassword, newPassword) => {
+    return async (dispatch) => {
+        try {
+            const res = await axios.put(getTeacherChangePasswordURL(updatedTeacherID), {oldPassword, newPassword})
+            const {
+                data,
+                success,
+                message
+            } = res.data;
+            const teacher = data;
+
+            if (success === false) {
+                return dispatch({
+                    type: SET_MESSAGE,
+                    payload: {
+                        message,
+                        msg_type: "danger"
+                    }
+                })
+            }
+
+            dispatch({
+                type: SET_MESSAGE,
+                payload: {
+                    message,
+                    msg_type: "success"
+                }
+            })
+
+            return dispatch({
+                type: TEACHER_CHANGE_PASSWORD,
+                payload: {
+                    teacher
                 }
             })
         } catch (error) {

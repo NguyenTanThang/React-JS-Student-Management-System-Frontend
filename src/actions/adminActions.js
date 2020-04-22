@@ -4,7 +4,8 @@ import {
     EDIT_ADMIN,
     ADD_ADMIN,
     SET_MESSAGE,
-    USER_LOGIN
+    USER_LOGIN,
+    ADMIN_CHANGE_PASSWORD
 } from "../actions/types";
 import axios from "axios";
 import {
@@ -12,7 +13,8 @@ import {
     addAdminURL,
     getAdminByIDURL,
     getEditAdminURL,
-    adminLoginURL
+    adminLoginURL,
+    getAdminChangePasswordURL
 } from "../config/routes";
 
 export const getAllAdmins = () => {
@@ -217,6 +219,53 @@ export const adminLogin = (adminAccount) => {
                     user_id,
                     token,
                     date: Date.now()
+                }
+            })
+        } catch (error) {
+            return dispatch({
+                type: SET_MESSAGE,
+                payload: {
+                    message: error.response.data.message,
+                    msg_type: "danger"
+                }
+            })
+        }
+    }
+}
+
+export const adminChangePassword = (updatedAdminID, oldPassword, newPassword) => {
+    return async (dispatch) => {
+        try {
+            const res = await axios.put(getAdminChangePasswordURL(updatedAdminID), {oldPassword, newPassword})
+            const {
+                data,
+                success,
+                message
+            } = res.data;
+            const admin = data;
+
+            if (success === false) {
+                return dispatch({
+                    type: SET_MESSAGE,
+                    payload: {
+                        message,
+                        msg_type: "danger"
+                    }
+                })
+            }
+
+            dispatch({
+                type: SET_MESSAGE,
+                payload: {
+                    message,
+                    msg_type: "success"
+                }
+            })
+
+            return dispatch({
+                type: ADMIN_CHANGE_PASSWORD,
+                payload: {
+                    admin
                 }
             })
         } catch (error) {

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Link} from "react-router-dom";
 import {deleteClass} from "../../actions/classActions";
 import {connect} from "react-redux";
+import {dateParserWithMonth} from "../../utils/dateParser";
 
 class ClassItem extends Component {
 
@@ -15,7 +16,7 @@ class ClassItem extends Component {
                     <Link to={`/classes/details/${class_name}`}>
                         <h4>{class_name}</h4>
                     </Link>
-                    <h5>Created Date: {created_date}</h5>
+                    <h5>Created Date: {dateParserWithMonth(created_date)}</h5>
                 </div>
                     <ul>
                         <li>

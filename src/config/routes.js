@@ -1,4 +1,5 @@
-const MAIN_PROXY_URL = "https://node-js-sms-backend-123.herokuapp.com";
+//const MAIN_PROXY_URL = "https://node-js-sms-backend-123.herokuapp.com";
+const MAIN_PROXY_URL = "http://localhost:5000";
 
 export const allStudentsURL = `${MAIN_PROXY_URL}/students`;
 export const getStudentsByNameURL = (student_name) => {
@@ -18,7 +19,9 @@ export const getDeleteStudentURL = (student_id) => {
     return `${MAIN_PROXY_URL}/students/delete/${student_id}`
 }
 export const studentLoginURL = `${MAIN_PROXY_URL}/students/login`
-
+export const getStudentChangePasswordURL = (student_id) => {
+    return `${MAIN_PROXY_URL}/students/change_password/${student_id}`
+}
 
 
 
@@ -40,7 +43,9 @@ export const getDeleteTeacherURL = (teacher_id) => {
     return `${MAIN_PROXY_URL}/teachers/delete/${teacher_id}`
 }
 export const teacherLoginURL = `${MAIN_PROXY_URL}/teachers/login`
-
+export const getTeacherChangePasswordURL = (teacher_id) => {
+    return `${MAIN_PROXY_URL}/teachers/change_password/${teacher_id}`
+}
 
 
 
@@ -53,6 +58,9 @@ export const getEditAdminURL = (admin_id) => {
     return `${MAIN_PROXY_URL}/admins/edit/${admin_id}`
 }
 export const adminLoginURL = `${MAIN_PROXY_URL}/admins/login`
+export const getAdminChangePasswordURL = (admin_id) => {
+    return `${MAIN_PROXY_URL}/admins/change_password/${admin_id}`
+}
 
 
 export const allClassesURL = `${MAIN_PROXY_URL}/classes`;

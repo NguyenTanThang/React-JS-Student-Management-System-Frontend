@@ -28,15 +28,23 @@ render() {
             <Link className="nav-link" to="/">Login</Link>
         </li>
     ) : (
-        <li className="nav-item">
-            <Link className="nav-link text-danger" to="/logout">Logout</Link>
-        </li>
+        <>
+            <li className="nav-item">
+                <Link className="nav-link" to="/change-password">Change Password</Link>
+            </li>
+            <li className="nav-item">
+                <Link className="nav-link text-danger" to="/logout">Logout</Link>
+            </li>
+        </>
     )
 
     const teacherNavLinks = role === "teacher" ? (
         <>
             <li className="nav-item">
                 <Link className="nav-link" to={`/teachers/details/${user_id}`}>Profile</Link>
+            </li>
+            <li className="nav-item">
+                <Link className="nav-link" to={`/teachers/edit/${user_id}`}>Update Profile</Link>
             </li>
             <li className="nav-item">
                 <Link className="nav-link" to={`/classes/details/${assigned_classroom}`}>Your Class</Link>
@@ -48,6 +56,9 @@ render() {
         <>
             <li className="nav-item">
                 <Link className="nav-link" to={`/students/details/${user_id}`}>Profile</Link>
+            </li>
+            <li className="nav-item">
+                <Link className="nav-link" to={`/students/edit/${user_id}`}>Update Profile</Link>
             </li>
         </>
     ) : ("")

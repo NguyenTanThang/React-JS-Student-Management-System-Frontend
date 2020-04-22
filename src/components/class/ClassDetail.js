@@ -32,13 +32,13 @@ class ClassDetail extends Component {
         const studentList = students.length === 0 ? (
             <h2>There is no student in this class</h2>
         ) : students.map(studentItem => {
-            return <StudentItem studentItem={studentItem}/>
+            return <StudentItem key={studentItem._id} studentItem={studentItem}/>
         })
 
         const teacherItem = teacher === null ? (
             <h2>There is no teacher in this class</h2>
         ) : (
-            <TeacherItem teacherItem={teacher}/>
+            <TeacherItem key={teacher._id} teacherItem={teacher}/>
         ) 
 
         return (

@@ -24,7 +24,7 @@ class AddClassForm extends Component {
         this.setState({
             class_name: ""
         }, () => {
-            this.props.history.push("/classes");
+            //this.props.history.push("/classes");
         })
 
     }

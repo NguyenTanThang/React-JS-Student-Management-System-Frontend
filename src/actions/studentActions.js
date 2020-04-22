@@ -6,7 +6,8 @@ import {
     GET_STUDENTS_BY_NAME,
     GET_STUDENT_BY_ID,
     SET_MESSAGE,
-    USER_LOGIN
+    USER_LOGIN,
+    STUDENT_CHANGE_PASSWORD
 } from "./types";
 import axios from "axios";
 import {
@@ -16,7 +17,8 @@ import {
     getEditStudentURL,
     getStudentByIDURL,
     getStudentsByNameURL,
-    studentLoginURL
+    studentLoginURL,
+    getStudentChangePasswordURL
 } from "../config/routes";
 
 export const getAllStudents = () => {
@@ -321,6 +323,53 @@ export const studentLogin = (studentAccount) => {
                     user_id,
                     token,
                     date: Date.now()
+                }
+            })
+        } catch (error) {
+            return dispatch({
+                type: SET_MESSAGE,
+                payload: {
+                    message: error.response.data.message,
+                    msg_type: "danger"
+                }
+            })
+        }
+    }
+}
+
+export const studentChangePassword = (updatedStudentID, oldPassword, newPassword) => {
+    return async (dispatch) => {
+        try {
+            const res = await axios.put(getStudentChangePasswordURL(updatedStudentID), {oldPassword, newPassword})
+            const {
+                data,
+                success,
+                message
+            } = res.data;
+            const student = data;
+
+            if (success === false) {
+                return dispatch({
+                    type: SET_MESSAGE,
+                    payload: {
+                        message,
+                        msg_type: "danger"
+                    }
+                })
+            }
+
+            dispatch({
+                type: SET_MESSAGE,
+                payload: {
+                    message,
+                    msg_type: "success"
+                }
+            })
+
+            return dispatch({
+                type: STUDENT_CHANGE_PASSWORD,
+                payload: {
+                    student
                 }
             })
         } catch (error) {

@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import {deleteStudent} from "../../actions/studentActions";
 import {connect} from "react-redux";
 import {userGetter} from "../../utils/userGetter";
+import {dateParserWithMonth} from "../../utils/dateParser";
 
 class StudentItem extends Component {
 
@@ -44,7 +45,7 @@ class StudentItem extends Component {
                     <Link to={`/students/details/${_id}`}>
                         <h4>{name}</h4>
                     </Link>
-                    <h5>Date of Birth: {dob}</h5>
+                    <h5>Date of Birth: {dateParserWithMonth(dob)}</h5>
                 </div>
                 {buttons}
             </div>
