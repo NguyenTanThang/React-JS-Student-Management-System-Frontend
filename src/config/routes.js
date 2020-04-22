@@ -1,5 +1,5 @@
-//const MAIN_PROXY_URL = "https://node-js-sms-backend-123.herokuapp.com";
-const MAIN_PROXY_URL = "http://localhost:5000";
+const MAIN_PROXY_URL = "https://node-js-sms-backend-123.herokuapp.com";
+//const MAIN_PROXY_URL = "http://localhost:5000";
 
 export const allStudentsURL = `${MAIN_PROXY_URL}/students`;
 export const getStudentsByNameURL = (student_name) => {
